@@ -1,3 +1,7 @@
+import AppFooter from "@/components/layout/footer/app-footer";
+import AppHeader from "@/components/layout/header/app-header";
+import AppSidebar from "@/components/layout/sidebar/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,7 +31,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <SidebarProvider className="h-dvh w-dvw">
+          <AppSidebar />
+          <SidebarInset className="!m-0">
+            <AppHeader />
+            <main>{children}</main>
+            <AppFooter />
+          </SidebarInset>
+        </SidebarProvider>
       </body>
     </html>
   );
